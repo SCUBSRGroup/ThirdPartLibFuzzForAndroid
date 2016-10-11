@@ -5,18 +5,25 @@ Fuzzing framework for third part library of android system
 由于，近年来，关于Android第三方库的漏洞不断曝光。本课题将提出一种对Android系统的第三方库的fuzz框架。
 ##现有的工具：
 学术界半自动化挖掘工具：
-ComDroid、 CHEX、 DroidChecker、Woodpecker、 MalloDroid、ContentScope、 …
+ ComDroid、 CHEX、 DroidChecker、Woodpecker、 MalloDroid、ContentScope
 开源挖掘工具
-Peach：http://www.peachfuzzer.com
-Afl:http://lcamtuf.coredump.cx/afl/
-Honggfuzz:https://github.com/fuzzing/MFFA
-MFFA: https://github.com/fuzzing/MFFA
-DroidFuzzer: https://github.com/manfiS/droidfuzzer
+ Peach：http://www.peachfuzzer.com
+ Afl:http://lcamtuf.coredump.cx/afl/
+ Honggfuzz:https://github.com/fuzzing/MFFA
+ MFFA: https://github.com/fuzzing/MFFA
+ DroidFuzzer: https://github.com/manfiS/droidfuzzer
 
 ##现有工具的局限性
 1、都着眼于API漏洞和Crash漏洞的监测，无法检测Android系统第三方库的漏洞
-?2、对简单的例子也存在大量误报和漏报
-–? 未建立程序整体ICFG， 没有进行整体数据流分析
-–? 仅仅是简单的后向回溯甚至关键字匹配
+2、对简单的例子也存在大量误报和漏报，未建立程序整体ICFG， 没有进行整体数据流分析，仅仅是简单的后向回溯甚至关键字匹配。
 3、覆盖率低
+
+##新的fuzz方法
+第一种：peach+honggfuzz+AFL
+第二种：AFL+Peach+MFFA
+第三种：MFFA+Peach
+##ThirdPartLibFuzzForAndroid的工作
+1、从国际权威漏洞库中整理出爆出过历史漏洞的Android第三方库，构建一个第三方库漏洞库，
+2、对google play上下载率高、使用量高的APP中常用的Android第三方库进行统计和fuzz，将存在漏洞的第三方库添加到第一步中构建的数据库中。
+3、实现一个Android第三方库漏洞的扫描器。
 
